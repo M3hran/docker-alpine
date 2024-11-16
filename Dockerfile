@@ -1,9 +1,9 @@
-ARG ALPINE_VERSION=3.20
+ARG ALPINE_VERSION=3.20.3
 
-FROM docker.io/alpine:${ALPINE_VERSION}
+FROM alpine:${ALPINE_VERSION}
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
-ARG GOLANG_VERSION=1.21.13
+ARG GOLANG_VERSION=1.23.3
 ARG DOAS_VERSION
 ARG FLUENTBIT_VERSION
 ARG S6_OVERLAY_VERSION
@@ -11,7 +11,7 @@ ARG YQ_VERSION
 ARG ZABBIX_VERSION
 
 ### Set defaults
-ENV FLUENTBIT_VERSION=${FLUENTBIT_VERSION:-"3.2.0"} \
+ENV FLUENTBIT_VERSION=${FLUENTBIT_VERSION:-"3.1.10"} \
     S6_OVERLAY_VERSION=${S6_OVERLAY_VERSION:-"3.2.0.2"} \
     YQ_VERSION=${YQ_VERSION:-"v4.44.2"} \
     ZABBIX_VERSION=${ZABBIX_VERSION:-"7.0.5"} \
@@ -28,8 +28,8 @@ ENV FLUENTBIT_VERSION=${FLUENTBIT_VERSION:-"3.2.0"} \
     S6_GLOBAL_PATH=/command:/usr/bin:/bin:/usr/sbin:sbin:/usr/local/bin:/usr/local/sbin \
     S6_KEEP_ENV=1 \
     S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0 \
-    IMAGE_NAME="tiredofit/alpine" \
-    IMAGE_REPO_URL="https://github.com/tiredofit/docker-alpine/"
+    IMAGE_NAME="m3hran/alpine" \
+    IMAGE_REPO_URL="https://github.com/m3hran/docker-alpine/"
 
 ## Mono Repo workarounds
 RUN case "$(cat /etc/os-release | grep VERSION_ID | cut -d = -f 2 | cut -d . -f 1,2)" in \
